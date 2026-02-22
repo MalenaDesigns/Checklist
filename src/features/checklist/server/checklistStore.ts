@@ -1,9 +1,4 @@
-export type ChecklistItem = {
-  id: string;
-  title: string;
-  done: boolean;
-  createdAt: string;
-};
+import { ChecklistItem } from "@/features/checklist/types";
 
 export type DailyHistorySummary = {
   date: string;
@@ -106,3 +101,4 @@ export function listDailyHistorySummary(): DailyHistorySummary[] {
 export function listItemsByDate(date: string) {
   return listItems().filter((item) => getDateKeyFromIso(item.createdAt) === date);
 }
+

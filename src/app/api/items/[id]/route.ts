@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { deleteItem, updateItem } from "@/lib/checklist-store";
+import { deleteItem, updateItem } from "@/features/checklist/server/checklistStore";
 
 type RouteContext = {
   params: Promise<{ id: string }>;

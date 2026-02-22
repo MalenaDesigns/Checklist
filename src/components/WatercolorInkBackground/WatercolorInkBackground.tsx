@@ -2,7 +2,7 @@
 
 import { MeshGradient } from "@blur-ui/mesh-gradient";
 
-export default function WatercolorInkBackground() {
+export function WatercolorInkBackground() {
   return (
     <div
       aria-hidden
@@ -55,3 +55,4 @@ export default function WatercolorInkBackground() {
     </div>
   );
 }
+

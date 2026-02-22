@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import AppThemeProvider from "@/components/app-theme-provider";
-import WatercolorInkBackground from "@/components/watercolor-ink-background";
+import { AppThemeProvider } from "@/components/AppThemeProvider/AppThemeProvider";
+import { WatercolorInkBackground } from "@/components/WatercolorInkBackground/WatercolorInkBackground";
 import "@fontsource/sacramento";
 import "./globals.css";
 

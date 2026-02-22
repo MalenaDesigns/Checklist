@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 
-import { getDailyNote, listItemsByDate, upsertDailyNote } from "@/lib/checklist-store";
+import {
+  getDailyNote,
+  listItemsByDate,
+  upsertDailyNote,
+} from "@/features/checklist/server/checklistStore";
 
 type RouteContext = {
   params: Promise<{ date: string }>;

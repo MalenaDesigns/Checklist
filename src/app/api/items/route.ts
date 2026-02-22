@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { createItem, listItems } from "@/lib/checklist-store";
+import { createItem, listItems } from "@/features/checklist/server/checklistStore";
 
 export async function GET() {
   return NextResponse.json({ items: listItems() });

@@ -4,19 +4,20 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 
-import theme from "@/theme";
+import muiTheme from "@/styles/muiTheme";
 
-type Props = {
+type AppThemeProviderProps = {
   children: React.ReactNode;
 };
 
-export default function AppThemeProvider({ children }: Props) {
+export function AppThemeProvider({ children }: AppThemeProviderProps) {
   return (
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={muiTheme}>
         <CssBaseline />
         {children}
       </ThemeProvider>
     </AppRouterCacheProvider>
   );
 }
+

@@ -1,6 +1,16 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Alert from "@mui/material/Alert";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 
 type ChecklistItem = {
   id: string;
@@ -100,93 +110,194 @@ export default function ChecklistCrud({ initialItems }: Props) {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-6 px-6 py-10">
-      <header className="space-y-2">
-        <h1 className="text-4xl font-bold tracking-tight">Checklist CRUD</h1>
-        <p className="text-sm text-gray-600">
-          Next.js + API Routes. You can create, update, complete and delete tasks.
-        </p>
-      </header>
-
-      <form className="flex gap-3" onSubmit={createNewItem}>
-        <input
-          value={newTitle}
-          onChange={(event) => setNewTitle(event.target.value)}
-          placeholder="Add a new task..."
-          className="w-full rounded-lg border border-gray-300 px-4 py-2"
-        />
-        <button
-          type="submit"
-          className="rounded-lg bg-black px-4 py-2 font-semibold text-white"
-        >
-          Add
-        </button>
-      </form>
-
-      {error ? <p className="text-sm text-red-600">{error}</p> : null}
-
-      {items.length === 0 ? <p className="text-sm text-gray-600">No tasks yet.</p> : null}
-
-      <ul className="space-y-3">
-        {items.map((item) => (
-          <li
-            key={item.id}
-            className="flex items-center gap-3 rounded-lg border border-gray-200 px-4 py-3"
+    <Box
+      component="main"
+      sx={{
+        mx: "auto",
+        position: "relative",
+        zIndex: 1,
+        minHeight: "100vh",
+        width: "100%",
+        maxWidth: 960,
+        px: { xs: 2, sm: 3 },
+        py: 5,
+      }}
+    >
+      <Paper
+        elevation={0}
+        sx={{
+          border: "1px solid",
+          borderColor: "rgb(255 255 255 / 55%)",
+          bgcolor: "rgb(255 255 255 / 44%)",
+          p: { xs: 2.5, sm: 3.5 },
+          boxShadow: "0 16px 46px rgba(103, 72, 97, 0.2)",
+          backdropFilter: "blur(16px) saturate(135%)",
+          WebkitBackdropFilter: "blur(16px) saturate(135%)",
+        }}
+      >
+        <Stack spacing={0.75}>
+          <Typography variant="h3" fontSize={{ xs: "2rem", sm: "2.5rem" }}>
+            Checklist CRUD
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              borderLeft: "4px solid",
+              borderColor: "warning.main",
+              pl: 1.25,
+            }}
           >
-            <input
-              type="checkbox"
-              checked={item.done}
-              onChange={() => toggleDone(item)}
-              className="h-4 w-4"
-            />
+            Next.js + API Routes. You can create, update, complete and delete
+            tasks.
+          </Typography>
+        </Stack>
 
-            {editingId === item.id ? (
-              <input
-                value={editingTitle}
-                onChange={(event) => setEditingTitle(event.target.value)}
-                className="w-full rounded-md border border-gray-300 px-3 py-1"
-              />
-            ) : (
-              <span
-                className={`w-full ${
-                  item.done ? "text-gray-400 line-through" : "text-gray-900"
-                }`}
-              >
-                {item.title}
-              </span>
-            )}
+        <Stack
+          component="form"
+          direction={{ xs: "column", sm: "row" }}
+          spacing={1.5}
+          onSubmit={createNewItem}
+          sx={{ mt: 3 }}
+        >
+          <TextField
+            fullWidth
+            size="small"
+            value={newTitle}
+            onChange={(event) => setNewTitle(event.target.value)}
+            placeholder="Add a new task..."
+            slotProps={{
+              input: {
+                sx: {
+                  color: "text.primary",
+                  "& input::placeholder": {
+                    color: "#7d647f",
+                    opacity: 1,
+                  },
+                },
+              },
+            }}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{ minWidth: { xs: "100%", sm: 120 } }}
+          >
+            Add
+          </Button>
+        </Stack>
 
-            {editingId === item.id ? (
-              <button
-                type="button"
-                onClick={() => saveTitle(item.id)}
-                className="rounded-md bg-emerald-600 px-3 py-1 text-sm font-medium text-white"
-              >
-                Save
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={() => {
-                  setEditingId(item.id);
-                  setEditingTitle(item.title);
-                }}
-                className="rounded-md border border-gray-300 px-3 py-1 text-sm"
-              >
-                Edit
-              </button>
-            )}
+        {error ? <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert> : null}
 
-            <button
-              type="button"
-              onClick={() => removeItem(item.id)}
-              className="rounded-md border border-red-300 px-3 py-1 text-sm text-red-700"
+        {items.length === 0 ? (
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+            No tasks yet.
+          </Typography>
+        ) : null}
+
+        <List sx={{ mt: 2, p: 0, display: "grid", gap: 1.25 }}>
+          {items.map((item) => (
+            <ListItem
+              key={item.id}
+              disablePadding
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1.5,
+                border: "1px solid",
+                borderColor: "rgb(255 255 255 / 52%)",
+                bgcolor: "rgb(255 255 255 / 48%)",
+                borderRadius: 3,
+                px: 1.75,
+                py: 1.1,
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+              }}
             >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-    </main>
+              <Checkbox
+                checked={item.done}
+                onChange={() => toggleDone(item)}
+                size="small"
+                color="warning"
+              />
+
+              {editingId === item.id ? (
+                <TextField
+                  fullWidth
+                  size="small"
+                  value={editingTitle}
+                  onChange={(event) => setEditingTitle(event.target.value)}
+                  slotProps={{
+                    input: {
+                      sx: {
+                        color: "text.primary",
+                        "& input::placeholder": {
+                          color: "#7d647f",
+                          opacity: 1,
+                        },
+                      },
+                    },
+                  }}
+                />
+              ) : (
+                <Typography
+                  sx={{
+                    flexGrow: 1,
+                    textDecoration: item.done ? "line-through" : "none",
+                    color: item.done ? "#7b687f" : "text.primary",
+                  }}
+                >
+                  {item.title}
+                </Typography>
+              )}
+
+              <Stack direction="row" spacing={1} sx={{ flexShrink: 0 }}>
+              {editingId === item.id ? (
+                <Button
+                  type="button"
+                  onClick={() => saveTitle(item.id)}
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                >
+                  Save
+                </Button>
+              ) : (
+                <Button
+                  type="button"
+                  onClick={() => {
+                    setEditingId(item.id);
+                    setEditingTitle(item.title);
+                  }}
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                >
+                  Edit
+                </Button>
+              )}
+
+              <Button
+                type="button"
+                onClick={() => removeItem(item.id)}
+                variant="contained"
+                size="small"
+                sx={{
+                  bgcolor: "error.main",
+                  color: "error.contrastText",
+                  "&:hover": {
+                    bgcolor: "#76243d",
+                  },
+                }}
+              >
+                Delete
+              </Button>
+              </Stack>
+            </ListItem>
+          ))}
+        </List>
+      </Paper>
+    </Box>
   );
 }

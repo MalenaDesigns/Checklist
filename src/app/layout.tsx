@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AppThemeProvider from "@/components/app-theme-provider";
 import WatercolorInkBackground from "@/components/watercolor-ink-background";
+import "@fontsource/sacramento";
 import "./globals.css";
 
 export const metadata: Metadata = {

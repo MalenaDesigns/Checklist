@@ -1,6 +1,7 @@
 :root {
   --font-sans: "Segoe UI", "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "Cascadia Code", "Fira Code", Consolas, "Courier New", monospace;
+  --font-handwriting: "Sacramento", "Segoe Script", "Bradley Hand", cursive;
 }
 
 body {

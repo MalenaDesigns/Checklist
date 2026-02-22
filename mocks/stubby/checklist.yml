@@ -1,0 +1,158 @@
+- request:
+    method: GET
+    url: /api/items
+  response:
+    status: 200
+    headers:
+      content-type: application/json
+    body: >
+      {
+        "items": [
+          { "id": "a1", "title": "Plan sprint meeting", "done": true, "createdAt": "2026-02-16T09:00:00.000Z" },
+          { "id": "a2", "title": "Review design tokens", "done": false, "createdAt": "2026-02-16T11:30:00.000Z" },
+          { "id": "a3", "title": "Update hero gradient", "done": true, "createdAt": "2026-02-16T15:10:00.000Z" },
+
+          { "id": "b1", "title": "Create API contract", "done": true, "createdAt": "2026-02-17T08:20:00.000Z" },
+          { "id": "b2", "title": "Build history sidebar", "done": true, "createdAt": "2026-02-17T12:10:00.000Z" },
+          { "id": "b3", "title": "Test modal details", "done": false, "createdAt": "2026-02-17T16:45:00.000Z" },
+
+          { "id": "c1", "title": "Prepare PR description", "done": true, "createdAt": "2026-02-18T10:00:00.000Z" },
+          { "id": "c2", "title": "Accessibility pass", "done": true, "createdAt": "2026-02-18T14:15:00.000Z" },
+          { "id": "c3", "title": "Final visual polish", "done": true, "createdAt": "2026-02-18T18:00:00.000Z" }
+        ]
+      }
+
+- request:
+    method: GET
+    url: /api/history
+  response:
+    status: 200
+    headers:
+      content-type: application/json
+    body: >
+      {
+        "history": [
+          { "date": "2026-02-18", "total": 3, "completed": 3, "note": "Dia redondo. Se cerraron todos los pendientes con buena calidad visual." },
+          { "date": "2026-02-17", "total": 3, "completed": 2, "note": "Falto cerrar testing de modal. Se movio para el dia siguiente." },
+          { "date": "2026-02-16", "total": 3, "completed": 2, "note": "Buen avance inicial, pero quedo una tarea abierta por tiempo." }
+        ]
+      }
+
+- request:
+    method: GET
+    url: /api/history/2026-02-16
+  response:
+    status: 200
+    headers:
+      content-type: application/json
+    body: >
+      {
+        "date": "2026-02-16",
+        "items": [
+          { "id": "a1", "title": "Plan sprint meeting", "done": true, "createdAt": "2026-02-16T09:00:00.000Z" },
+          { "id": "a2", "title": "Review design tokens", "done": false, "createdAt": "2026-02-16T11:30:00.000Z" },
+          { "id": "a3", "title": "Update hero gradient", "done": true, "createdAt": "2026-02-16T15:10:00.000Z" }
+        ],
+        "note": "Buen avance inicial, pero quedo una tarea abierta por tiempo.",
+        "total": 3,
+        "completed": 2
+      }
+
+- request:
+    method: GET
+    url: /api/history/2026-02-17
+  response:
+    status: 200
+    headers:
+      content-type: application/json
+    body: >
+      {
+        "date": "2026-02-17",
+        "items": [
+          { "id": "b1", "title": "Create API contract", "done": true, "createdAt": "2026-02-17T08:20:00.000Z" },
+          { "id": "b2", "title": "Build history sidebar", "done": true, "createdAt": "2026-02-17T12:10:00.000Z" },
+          { "id": "b3", "title": "Test modal details", "done": false, "createdAt": "2026-02-17T16:45:00.000Z" }
+        ],
+        "note": "Falto cerrar testing de modal. Se movio para el dia siguiente.",
+        "total": 3,
+        "completed": 2
+      }
+
+- request:
+    method: GET
+    url: /api/history/2026-02-18
+  response:
+    status: 200
+    headers:
+      content-type: application/json
+    body: >
+      {
+        "date": "2026-02-18",
+        "items": [
+          { "id": "c1", "title": "Prepare PR description", "done": true, "createdAt": "2026-02-18T10:00:00.000Z" },
+          { "id": "c2", "title": "Accessibility pass", "done": true, "createdAt": "2026-02-18T14:15:00.000Z" },
+          { "id": "c3", "title": "Final visual polish", "done": true, "createdAt": "2026-02-18T18:00:00.000Z" }
+        ],
+        "note": "Dia redondo. Se cerraron todos los pendientes con buena calidad visual.",
+        "total": 3,
+        "completed": 3
+      }
+
+- request:
+    method: PATCH
+    url: /api/history/.*
+  response:
+    status: 200
+    headers:
+      content-type: application/json
+    body: >
+      {
+        "ok": true,
+        "note": "Nota guardada en mock (stubby)."
+      }
+
+- request:
+    method: POST
+    url: /api/items
+  response:
+    status: 201
+    headers:
+      content-type: application/json
+    body: >
+      {
+        "item": {
+          "id": "mock-new-1",
+          "title": "Nuevo item mock",
+          "done": false,
+          "createdAt": "2026-02-18T19:00:00.000Z"
+        }
+      }
+
+- request:
+    method: PATCH
+    url: /api/items/.*
+  response:
+    status: 200
+    headers:
+      content-type: application/json
+    body: >
+      {
+        "item": {
+          "id": "mock-updated",
+          "title": "Item actualizado en mock",
+          "done": true,
+          "createdAt": "2026-02-18T19:00:00.000Z"
+        }
+      }
+
+- request:
+    method: DELETE
+    url: /api/items/.*
+  response:
+    status: 200
+    headers:
+      content-type: application/json
+    body: >
+      {
+        "ok": true
+      }

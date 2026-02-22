@@ -6,12 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "mock:api": "stubby -d mocks/stubby/checklist.yml -s 4010 -l 127.0.0.1",
+    "dev:mock": "set NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:4010&& next dev"
   },
   "dependencies": {
     "@blur-ui/mesh-gradient": "^1.0.13",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@fontsource/sacramento": "^5.2.8",
+    "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.8",
     "@mui/material-nextjs": "^7.3.8",
     "next": "16.1.6",
@@ -24,6 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "stubby": "^5.1.0",
     "typescript": "^5"
   }
 }

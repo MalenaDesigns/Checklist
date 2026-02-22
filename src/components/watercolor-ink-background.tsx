@@ -1,15 +1,17 @@
 "use client";
 
 import { MeshGradient } from "@blur-ui/mesh-gradient";
-import Box from "@mui/material/Box";
 
 export default function WatercolorInkBackground() {
   return (
-    <Box
+    <div
       aria-hidden
-      sx={{
+      style={{
         position: "fixed",
-        inset: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
         zIndex: 0,
         pointerEvents: "none",
         overflow: "hidden",
@@ -33,10 +35,13 @@ export default function WatercolorInkBackground() {
         }}
       />
 
-      <Box
-        sx={{
+      <div
+        style={{
           position: "absolute",
-          inset: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
           backgroundImage: `
             radial-gradient(16rem 14rem at 12% 18%, rgb(168 107 118 / 45%), transparent 72%),
             radial-gradient(20rem 18rem at 88% 20%, rgb(125 79 114 / 42%), transparent 74%),
@@ -47,6 +52,6 @@ export default function WatercolorInkBackground() {
           opacity: 0.62,
         }}
       />
-    </Box>
+    </div>
   );
 }

@@ -1,6 +1,11 @@
 import ChecklistCrud from "@/components/checklist-crud";
-import { listItems } from "@/lib/checklist-store";
+import { listDailyHistorySummary, listItems } from "@/lib/checklist-store";
 
 export default function Home() {
-  return <ChecklistCrud initialItems={listItems()} />;
+  return (
+    <ChecklistCrud
+      initialItems={listItems()}
+      initialHistory={listDailyHistorySummary()}
+    />
+  );
 }

@@ -16,7 +16,7 @@
     "@emotion/styled": "^11.14.1",
     "@fontsource/sacramento": "^5.2.8",
     "@mui/icons-material": "^7.3.8",
-    "@mui/material": "^7.3.8",
+    "@mui/material": "^7.3.10",
     "@mui/material-nextjs": "^7.3.8",
     "next": "16.1.6",
     "react": "19.2.3",
